@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace TestingControllersSample.ViewModels;
+namespace TestingControllersSample.Core.Model;
 
-public class IdeaViewModel
+public class Idea
 {
     public int Id { get; set; }
 

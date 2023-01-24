@@ -1,12 +1,14 @@
 ﻿using System;
 
-namespace TestingControllersSample.ViewModels
+namespace TestingControllersSample.ViewModels;
+
+public class StormSessionViewModel
 {
-    public class StormSessionViewModel
-    {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public DateTimeOffset DateCreated { get; set; }
-        public int IdeaCount { get; set; }
-    }
+    public int Id { get; set; }
+
+    public string Name { get; set; }
+
+    public DateTimeOffset DateCreated { get; set; }
+
+    public int IdeaCount { get; set; }
 }
