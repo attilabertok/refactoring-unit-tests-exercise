@@ -8,11 +8,11 @@ namespace TestingControllersSample.Controllers
     #region snippet_SessionController
     public class SessionController : Controller
     {
-        private readonly IBrainstormSessionRepository _sessionRepository;
+        private readonly IBrainstormSessionRepository sessionRepository;
 
         public SessionController(IBrainstormSessionRepository sessionRepository)
         {
-            _sessionRepository = sessionRepository;
+            this.sessionRepository = sessionRepository;
         }
 
         public async Task<IActionResult> Index(int? id)
@@ -23,7 +23,7 @@ namespace TestingControllersSample.Controllers
                     controllerName: "Home");
             }
 
-            var session = await _sessionRepository.GetByIdAsync(id.Value);
+            var session = await sessionRepository.GetByIdAsync(id.Value);
             if (session == null)
             {
                 return Content("Session not found.");

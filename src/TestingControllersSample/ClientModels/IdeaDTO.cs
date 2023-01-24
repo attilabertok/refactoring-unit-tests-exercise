@@ -2,7 +2,7 @@
 
 namespace TestingControllersSample.ClientModels
 {
-    public class IdeaDTO
+    public class IdeaDto
     {
         public int Id { get; set; }
         public string Name { get; set; }

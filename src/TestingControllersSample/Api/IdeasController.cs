@@ -12,24 +12,24 @@ namespace TestingControllersSample.Api
     [Route("api/ideas")]
     public class IdeasController : ControllerBase
     {
-        private readonly IBrainstormSessionRepository _sessionRepository;
+        private readonly IBrainstormSessionRepository sessionRepository;
 
         public IdeasController(IBrainstormSessionRepository sessionRepository)
         {
-            _sessionRepository = sessionRepository;
+            this.sessionRepository = sessionRepository;
         }
 
         #region snippet_ForSessionAndCreate
         [HttpGet("forsession/{sessionId}")]
         public async Task<IActionResult> ForSession(int sessionId)
         {
-            var session = await _sessionRepository.GetByIdAsync(sessionId);
+            var session = await sessionRepository.GetByIdAsync(sessionId);
             if (session == null)
             {
                 return NotFound(sessionId);
             }
 
-            var result = session.Ideas.Select(idea => new IdeaDTO()
+            var result = session.Ideas.Select(idea => new IdeaDto()
             {
                 Id = idea.Id,
                 Name = idea.Name,
@@ -48,7 +48,7 @@ namespace TestingControllersSample.Api
                 return BadRequest(ModelState);
             }
 
-            var session = await _sessionRepository.GetByIdAsync(model.SessionId);
+            var session = await sessionRepository.GetByIdAsync(model.SessionId);
             if (session == null)
             {
                 return NotFound(model.SessionId);
@@ -62,7 +62,7 @@ namespace TestingControllersSample.Api
             };
             session.AddIdea(idea);
 
-            await _sessionRepository.UpdateAsync(session);
+            await sessionRepository.UpdateAsync(session);
 
             return Ok(session);
         }
@@ -72,16 +72,16 @@ namespace TestingControllersSample.Api
         [HttpGet("forsessionactionresult/{sessionId}")]
         [ProducesResponseType(200)]
         [ProducesResponseType(404)]
-        public async Task<ActionResult<List<IdeaDTO>>> ForSessionActionResult(int sessionId)
+        public async Task<ActionResult<List<IdeaDto>>> ForSessionActionResult(int sessionId)
         {
-            var session = await _sessionRepository.GetByIdAsync(sessionId);
+            var session = await sessionRepository.GetByIdAsync(sessionId);
 
             if (session == null)
             {
                 return NotFound(sessionId);
             }
 
-            var result = session.Ideas.Select(idea => new IdeaDTO()
+            var result = session.Ideas.Select(idea => new IdeaDto()
             {
                 Id = idea.Id,
                 Name = idea.Name,
@@ -105,7 +105,7 @@ namespace TestingControllersSample.Api
                 return BadRequest(ModelState);
             }
 
-            var session = await _sessionRepository.GetByIdAsync(model.SessionId);
+            var session = await sessionRepository.GetByIdAsync(model.SessionId);
 
             if (session == null)
             {
@@ -120,7 +120,7 @@ namespace TestingControllersSample.Api
             };
             session.AddIdea(idea);
 
-            await _sessionRepository.UpdateAsync(session);
+            await sessionRepository.UpdateAsync(session);
 
             return CreatedAtAction(nameof(CreateActionResult), new { id = session.Id }, session);
         }

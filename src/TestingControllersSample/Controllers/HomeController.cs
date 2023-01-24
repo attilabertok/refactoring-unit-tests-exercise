@@ -12,16 +12,16 @@ namespace TestingControllersSample.Controllers
     #region snippet_HomeController
     public class HomeController : Controller
     {
-        private readonly IBrainstormSessionRepository _sessionRepository;
+        private readonly IBrainstormSessionRepository sessionRepository;
 
         public HomeController(IBrainstormSessionRepository sessionRepository)
         {
-            _sessionRepository = sessionRepository;
+            this.sessionRepository = sessionRepository;
         }
 
         public async Task<IActionResult> Index()
         {
-            var sessionList = await _sessionRepository.ListAsync();
+            var sessionList = await sessionRepository.ListAsync();
 
             var model = sessionList.Select(session => new StormSessionViewModel()
             {
@@ -49,7 +49,7 @@ namespace TestingControllersSample.Controllers
             }
             else
             {
-                await _sessionRepository.AddAsync(new BrainstormSession()
+                await sessionRepository.AddAsync(new BrainstormSession()
                 {
                     DateCreated = DateTimeOffset.Now,
                     Name = model.SessionName

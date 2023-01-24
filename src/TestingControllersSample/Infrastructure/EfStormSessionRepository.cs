@@ -7,25 +7,25 @@ using TestingControllersSample.Core.Model;
 
 namespace TestingControllersSample.Infrastructure
 {
-    public class EFStormSessionRepository : IBrainstormSessionRepository
+    public class EfStormSessionRepository : IBrainstormSessionRepository
     {
-        private readonly AppDbContext _dbContext;
+        private readonly AppDbContext dbContext;
 
-        public EFStormSessionRepository(AppDbContext dbContext)
+        public EfStormSessionRepository(AppDbContext dbContext)
         {
-            _dbContext = dbContext;
+            this.dbContext = dbContext;
         }
 
         public Task<BrainstormSession> GetByIdAsync(int id)
         {
-            return _dbContext.BrainstormSessions
+            return dbContext.BrainstormSessions
                 .Include(s => s.Ideas)
                 .FirstOrDefaultAsync(s => s.Id == id);
         }
 
         public Task<List<BrainstormSession>> ListAsync()
         {
-            return _dbContext.BrainstormSessions
+            return dbContext.BrainstormSessions
                 .Include(s => s.Ideas)
                 .OrderByDescending(s => s.DateCreated)
                 .ToListAsync();
@@ -33,14 +33,14 @@ namespace TestingControllersSample.Infrastructure
 
         public Task AddAsync(BrainstormSession session)
         {
-            _dbContext.BrainstormSessions.Add(session);
-            return _dbContext.SaveChangesAsync();
+            dbContext.BrainstormSessions.Add(session);
+            return dbContext.SaveChangesAsync();
         }
 
         public Task UpdateAsync(BrainstormSession session)
         {
-            _dbContext.Entry(session).State = EntityState.Modified;
-            return _dbContext.SaveChangesAsync();
+            dbContext.Entry(session).State = EntityState.Modified;
+            return dbContext.SaveChangesAsync();
         }
     }
 }

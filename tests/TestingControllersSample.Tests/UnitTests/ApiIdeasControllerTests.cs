@@ -123,7 +123,7 @@ namespace TestingControllersSample.Tests.UnitTests
 
             // Assert
             var okResult = Assert.IsType<OkObjectResult>(result);
-            var returnValue = Assert.IsType<List<IdeaDTO>>(okResult.Value);
+            var returnValue = Assert.IsType<List<IdeaDto>>(okResult.Value);
             var idea = returnValue.FirstOrDefault();
             Assert.Equal("One", idea.Name);
         }
@@ -142,7 +142,7 @@ namespace TestingControllersSample.Tests.UnitTests
             var result = await controller.ForSessionActionResult(nonExistentSessionId);
 
             // Assert
-            var actionResult = Assert.IsType<ActionResult<List<IdeaDTO>>>(result);
+            var actionResult = Assert.IsType<ActionResult<List<IdeaDto>>>(result);
             Assert.IsType<NotFoundObjectResult>(actionResult.Result);
         }
         #endregion
@@ -162,8 +162,8 @@ namespace TestingControllersSample.Tests.UnitTests
             var result = await controller.ForSessionActionResult(testSessionId);
 
             // Assert
-            var actionResult = Assert.IsType<ActionResult<List<IdeaDTO>>>(result);
-            var returnValue = Assert.IsType<List<IdeaDTO>>(actionResult.Value);
+            var actionResult = Assert.IsType<ActionResult<List<IdeaDto>>>(result);
+            var returnValue = Assert.IsType<List<IdeaDto>>(actionResult.Value);
             var idea = returnValue.FirstOrDefault();
             Assert.Equal("One", idea.Name);
         }
