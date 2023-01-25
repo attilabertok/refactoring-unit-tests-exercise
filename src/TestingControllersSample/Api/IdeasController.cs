@@ -30,7 +30,7 @@ public class IdeasController : ControllerBase
             return NotFound(sessionId);
         }
 
-        var result = session.Ideas.Select(idea => new IdeaDto()
+        var result = session.Ideas.Select(idea => new IdeaDto
         {
             Id = idea.Id,
             Name = idea.Name,
@@ -55,7 +55,7 @@ public class IdeasController : ControllerBase
             return NotFound(model.SessionId);
         }
 
-        var idea = new Idea()
+        var idea = new Idea
         {
             DateCreated = DateTimeOffset.Now,
             Description = model.Description,
@@ -80,7 +80,7 @@ public class IdeasController : ControllerBase
             return NotFound(sessionId);
         }
 
-        var result = session.Ideas.Select(idea => new IdeaDto()
+        var result = session.Ideas.Select(idea => new IdeaDto
         {
             Id = idea.Id,
             Name = idea.Name,
@@ -109,7 +109,7 @@ public class IdeasController : ControllerBase
             return NotFound(model.SessionId);
         }
 
-        var idea = new Idea()
+        var idea = new Idea
         {
             DateCreated = DateTimeOffset.Now,
             Description = model.Description,

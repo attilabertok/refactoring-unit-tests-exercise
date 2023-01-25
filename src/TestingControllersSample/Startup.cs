@@ -18,12 +18,12 @@ public class Startup
 {
     public static BrainstormSession GetTestSession()
     {
-        var session = new BrainstormSession()
+        var session = new BrainstormSession
         {
             Name = "Test Session 1",
             DateCreated = new DateTime(2016, 8, 1)
         };
-        var idea = new Idea()
+        var idea = new Idea
         {
             DateCreated = new DateTime(2016, 8, 1),
             Description = "Totally awesome idea",

@@ -63,7 +63,7 @@ public class ApiIdeasControllerTests
             .ReturnsAsync(testSession);
         var controller = new IdeasController(mockRepo.Object);
 
-        var newIdea = new NewIdeaModel()
+        var newIdea = new NewIdeaModel
         {
             Description = testDescription,
             Name = testName,
@@ -185,7 +185,7 @@ public class ApiIdeasControllerTests
         var mockRepo = new Mock<IBrainstormSessionRepository>();
         var controller = new IdeasController(mockRepo.Object);
 
-        var newIdea = new NewIdeaModel()
+        var newIdea = new NewIdeaModel
         {
             Description = testDescription,
             Name = testName,
@@ -213,7 +213,7 @@ public class ApiIdeasControllerTests
             .ReturnsAsync(testSession);
         var controller = new IdeasController(mockRepo.Object);
 
-        var newIdea = new NewIdeaModel()
+        var newIdea = new NewIdeaModel
         {
             Description = testDescription,
             Name = testName,
@@ -238,14 +238,14 @@ public class ApiIdeasControllerTests
 
     private static BrainstormSession GetTestSession()
     {
-        var session = new BrainstormSession()
+        var session = new BrainstormSession
         {
             DateCreated = new DateTime(2016, 7, 2),
             Id = 1,
             Name = "Test One"
         };
 
-        var idea = new Idea() { Name = "One" };
+        var idea = new Idea { Name = "One" };
         session.AddIdea(idea);
 
         return session;

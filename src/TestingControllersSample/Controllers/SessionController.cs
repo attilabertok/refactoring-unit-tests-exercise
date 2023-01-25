@@ -31,7 +31,7 @@ public class SessionController : Controller
             return Content("Session not found.");
         }
 
-        var viewModel = new StormSessionViewModel()
+        var viewModel = new StormSessionViewModel
         {
             DateCreated = session.DateCreated,
             Name = session.Name,

@@ -24,7 +24,7 @@ public class HomeController : Controller
     {
         var sessionList = await sessionRepository.ListAsync();
 
-        var model = sessionList.Select(session => new StormSessionViewModel()
+        var model = sessionList.Select(session => new StormSessionViewModel
         {
             Id = session.Id,
             DateCreated = session.DateCreated,
@@ -43,7 +43,7 @@ public class HomeController : Controller
             return BadRequest(ModelState);
         }
 
-        await sessionRepository.AddAsync(new BrainstormSession()
+        await sessionRepository.AddAsync(new BrainstormSession
         {
             DateCreated = DateTimeOffset.Now,
             Name = model.SessionName

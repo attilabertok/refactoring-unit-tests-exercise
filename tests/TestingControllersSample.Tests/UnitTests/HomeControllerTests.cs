@@ -65,7 +65,7 @@ public class HomeControllerTests
             .Returns(Task.CompletedTask)
             .Verifiable();
         var controller = new HomeController(mockRepo.Object);
-        var newSession = new HomeController.NewSessionModel()
+        var newSession = new HomeController.NewSessionModel
         {
             SessionName = "Test Name"
         };
